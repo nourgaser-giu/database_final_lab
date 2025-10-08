@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using HrLabApp.Data;
 using HrLabApp.Models;
 
@@ -16,15 +18,25 @@ public class CreateModel : PageModel
 
     [BindProperty]
     public Employee Employee { get; set; } = new();
+    
+    public SelectList DepartmentList { get; set; } = default!;
 
-    public void OnGet()
+    public async Task OnGetAsync()
     {
+        await LoadDepartments();
+    }
+    
+    private async Task LoadDepartments()
+    {
+        var departments = await _context.Departments.ToListAsync();
+        DepartmentList = new SelectList(departments, "Id", "Name");
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
         {
+            await LoadDepartments();
             return Page();
         }
 

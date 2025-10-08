@@ -18,6 +18,8 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        EmployeeList = await _context.Employees.ToListAsync();
+        EmployeeList = await _context.Employees
+            .Include(e => e.Department)
+            .ToListAsync();
     }
 }

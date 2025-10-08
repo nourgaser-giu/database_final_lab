@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using HrLabApp.Data;
 using HrLabApp.Models;
 
@@ -18,7 +19,9 @@ public class DetailsModel : PageModel
 
     public async Task<IActionResult> OnGetAsync(int id)
     {
-        var emp = await _context.Employees.FindAsync(id);
+        var emp = await _context.Employees
+            .Include(e => e.Department)
+            .FirstOrDefaultAsync(e => e.Id == id);
         if (emp == null) return NotFound();
         Employee = emp;
         return Page();

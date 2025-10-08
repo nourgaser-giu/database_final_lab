@@ -4,9 +4,18 @@
 <h1>Employee Details</h1>
 
 <div>
-    <p><strong>Name:</strong> @Model.Employee.Name</p>
-    <p><strong>Department:</strong> @Model.Employee.Department</p>
-    <p><strong>Salary:</strong> @Model.Employee.Salary</p>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Employee.Name)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Employee.Name)</dd>
+        
+        <dt class="col-sm-2">Department</dt>
+        <dd class="col-sm-10">@(Model.Employee.Department?.Name ?? "No Department")</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Employee.Salary)</dt>
+        <dd class="col-sm-10">@Model.Employee.Salary.ToString("C")</dd>
+    </dl>
 </div>
 
 <a asp-page="Edit" asp-route-id="@Model.Employee.Id">Edit</a> |
