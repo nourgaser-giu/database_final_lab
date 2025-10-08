@@ -5,6 +5,42 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">HR Management System</h1>
+    <p>Welcome to the HR Lab Application - Managing employees and departments</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="card-title">@Model.EmployeeCount</h3>
+                <p class="card-text">Total Employees</p>
+                <a asp-page="/Employees/Index" class="btn btn-primary">Manage Employees</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="card-title">@Model.DepartmentCount</h3>
+                <p class="card-text">Total Departments</p>
+                <a asp-page="/Departments/Index" class="btn btn-primary">Manage Departments</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="alert alert-info">
+            <h4>Features:</h4>
+            <ul>
+                <li>✅ Employee management with CRUD operations</li>
+                <li>✅ Department management with CRUD operations</li>
+                <li>✅ One-to-Many relationship between Departments and Employees</li>
+                <li>✅ Department assignment for employees</li>
+                <li>✅ Entity Framework Core with SQL Server</li>
+            </ul>
+        </div>
+    </div>
 </div>
